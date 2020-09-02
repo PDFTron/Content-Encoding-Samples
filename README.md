@@ -33,21 +33,6 @@ The main reason for this is that with this header the browser can quickly decomp
   3. Note that you may also need to restart your server, here is a [stackoverflow page](https://stackoverflow.com/questions/18261507/change-to-web-config-on-server-is-not-going-into-effect.) discuss about changing the web.config file on server.
   4. This has been tested on IIS 10, though this should work on IIS 7 and above. (web.config is only supported on IIS 7+)
 
-- For **Tomcat**:
-  1. In Tomcat 8.5 the right way to enable standard compression (gzip) is to add in server.xml file
-  2. Go to `TOMCAT_HOME/conf` and edit `server.xml` under `<Service name="Catalina">` tagedit the connector tag so it looks like the following:
-  ```
-  <Connector port="8080" maxHttpHeaderSize="8192"
-           maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
-           enableLookups="false" redirectPort="8443" acceptCount="100"
-           connectionTimeout="20000" disableUploadTimeout="true"
-           compression="on"
-           compressionMinSize="1024"
-           noCompressionUserAgents="gozilla, traviata"
-           compressableMimeType="text/html,text/xml"/>
-  ```
-  3. Here are a some detailed instructions: 
-     - [https://examples.javacodegeeks.com/enterprise-java/tomcat/enable-gzip-compression-apache-tomcat/](https://examples.javacodegeeks.com/enterprise-java/tomcat/enable-gzip-compression-apache-tomcat/)
 
 
 ### Some useful links:
