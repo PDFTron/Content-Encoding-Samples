@@ -50,5 +50,6 @@ The main reason for this is that with this header the browser can quickly decomp
      - [https://examples.javacodegeeks.com/enterprise-java/tomcat/enable-gzip-compression-apache-tomcat/](https://examples.javacodegeeks.com/enterprise-java/tomcat/enable-gzip-compression-apache-tomcat/)
 
 
-### pdfnet-webviewer google group discussion:
- - https://groups.google.com/g/pdfnet-webviewer/c/SeVvEpPAELg/m/bI4FcBy3BQAJ
+### Some useful links:
+ - pdfnet-webviewer google group discussion: https://groups.google.com/g/pdfnet-webviewer/c/SeVvEpPAELg/m/bI4FcBy3BQAJ
+ - Web FAQ troubleshooting: https://www.pdftron.com/documentation/web/faq/content-encoding/
