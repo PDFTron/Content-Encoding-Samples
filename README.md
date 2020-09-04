@@ -10,9 +10,14 @@ When running WebViewer on my server, you may encounter the warning "Your server 
 ## What does this mean and how do I fix this?
 WebViewer contains certain large files that are already compressed using brotli (abbreviated br) or gzip encoding. As the warning suggests for ideal performance your server should be adjusted to serve these files with the HTTP Content-Encoding header. (see [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding) for more details on Content-Encoding).
 
-The main reason for this is that with this header the browser can quickly decompress these files using native code. Note that WebViewer can still function by decompressing these files in JavaScript, but this may have an impact on loading speed.
+Without the Content-Encoding header, some issues are:
+  - Lack of WASM streaming compilation - being able to download and compile the code in parallel (while it is downloading)
+  - Lack of WASM caching. (For subsequent loads of the page) 
 
-### General Steps for fixing:
+Note that the WASM mime type('Content-Type': 'application/wasm') also needs to be served correctly for these. 
+Also, with this header the browser can quickly decompress these files using native code. Note that WebViewer can still function by decompressing these files in JavaScript, but this may have an impact on loading speed.
+
+### For fixing:
 1. Note that in order to serve files with `Content-Encoding: br` your site must use `HTTPS` rather than `HTTP`. This is due to behavior in certain browsers (in particular Chrome) that leads them to reject `brotli encoding` served over HTTP.
 2. The goal is to serve files within WebViewer containing `.gz` in their file name with `Content-Encoding: gzip` and files containing `.br` in their file name with `Content-Encoding: br`.
 
@@ -33,8 +38,14 @@ The main reason for this is that with this header the browser can quickly decomp
   3. Note that you may also need to restart your server, here is a [stackoverflow page](https://stackoverflow.com/questions/18261507/change-to-web-config-on-server-is-not-going-into-effect.) discuss about changing the web.config file on server.
   4. This has been tested on IIS 10, though this should work on IIS 7 and above. (web.config is only supported on IIS 7+)
 
+- Coming on the way:
+  - guide for Nginx
 
 
 ### Some useful links:
  - pdfnet-webviewer google group discussion: https://groups.google.com/g/pdfnet-webviewer/c/SeVvEpPAELg/m/bI4FcBy3BQAJ
  - Web FAQ troubleshooting: https://www.pdftron.com/documentation/web/faq/content-encoding/
+
+
+
+
